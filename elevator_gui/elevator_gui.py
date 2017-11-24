@@ -15,6 +15,6 @@ def update_gui(aufzug1, aufzug2,):
                 levellist2.append("|x|")
 
         for x in range(0,6):
-            print(levellist1[x] + "*** " + levellist2[x])
+            print(levellist1[x] + "***" + levellist2[x])
     
 update_gui(3,5)
