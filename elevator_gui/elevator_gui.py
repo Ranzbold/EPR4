@@ -1,5 +1,5 @@
 def update_gui(aufzug1, aufzug2,):
-    if((not 1 <= aufzug1 <= 6) and (not 1 <= aufzug2 <= 6)):
+    if((not 1 <= aufzug1 <= 6) or (not 1 <= aufzug2 <= 6)):
         print("Ungültige Argumenteingabe")
     else:
         levellist1 = []
@@ -17,4 +17,4 @@ def update_gui(aufzug1, aufzug2,):
         for x in range(0,6):
             print(levellist1[x] + "***" + levellist2[x])
     
-update_gui(3,5)
+update_gui(3,7)
