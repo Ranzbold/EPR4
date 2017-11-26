@@ -18,7 +18,7 @@ def calculate_priority(cmd_elevator, cmd_floor, current_state, last_state):
         else:
             return 
     else:
-        if (not 1 < current_state < 6):
+        if not (1 < current_state < 6):
             next_cmd = cmd_elevator[0]
             return next_cmd
         else:
