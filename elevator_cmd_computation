@@ -1,13 +1,18 @@
 def calculate_priority(cmd_elevator, cmd_floor, current_state, last_state):
     int_elevator = []
     int_floor = []
-    
-    for i in range(len(cmd_elevator)):
-        int_elevator.append(int(cmd_elevator[i][1]))    
-    for i in range(len(cmd_floor)):
-        int_floor.append(int(cmd_floor[i][0]))
 
-    if not cmd_A:
+    dictionary = {"K":"1", "E":"2", "1":"3", "2":"4", "3":"5", "4":"6"}
+    #dict_cmd_elevator = ()
+    #dict_cmd_elevator = ()
+    for i in range(len(cmd_elevator)):
+        dict_cmd_elevator = dictionary[cmd_elevator[i][1]]
+        int_elevator.append(int(dict_cmd_elevator))    
+    for i in range(len(cmd_floor)):
+        dict_cmd_floor = dictionary[cmd_floor[i][0]]
+        int_floor.append(int(dict_cmd_floor))
+
+    if not cmd_elevator:
         if cmd_floor:
             next_cmd = cmd_floor[0]
             return next_cmd
@@ -52,15 +57,15 @@ def calculate_priority(cmd_elevator, cmd_floor, current_state, last_state):
 
 
     
-current_state = [0, 0] #startpoint (needed for calculate_priority)
-last_state = [0, 0] 
+current_state = [2, 2] #startpoint (needed for calculate_priority)
+last_state = [2, 2] 
 cmd_floor = []
 cmd_A = []
 cmd_B = []
 
 
 usrinput = input('--> ')
-commands = usrinput.split(',')
+commands = usrinput.split(' ')
 #evaluate correctness of entry data
 
 for cnt in range(len(commands)):
@@ -80,4 +85,5 @@ next_A = calculate_priority(cmd_A, cmd_floor, current_state[0], last_state[0])
 #pop task from A and B
 next_B = calculate_priority(cmd_B, cmd_floor, current_state[1], last_state[1])
 #pop task from A and B
+
 
