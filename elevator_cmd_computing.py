@@ -1,5 +1,15 @@
+"""This code enables a twin elevator to processes calls from the floors and within the elevators, \
+and visualizes their current states.
+"""
+
 import random
 from elevator_gui import update_gui
+
+__author__ = "6611082: Cedric Reuter, 6317302: Fabian Eichner"
+__copyright__ = "Copyright 2017/2018 – EPR-Goethe-Uni" 
+__credits__ = " "
+__email__ = " " 
+
 
 def calculate_priority(cmd_elevator, cmd_floor, current_state, last_state):
     """Calculating the momentary target of the elevator and giving back the next elevator \
@@ -94,8 +104,6 @@ def halt(next_step, cmd_elevator, cmd_floor, current_state, last_state):
     
 
 
-
-
 dictionary = {"K":"1", "E":"2", "1":"3", "2":"4", "3":"5", "4":"6"}   
 current_state = [2, 2] #startpoint (needed for calculate_priority)
 last_state = [2, 2] 
@@ -161,6 +169,4 @@ for turn in range(10): #should be while loop before we hand it in
     last_state = current_state
     current_state = [next_A, next_B]
     
-    #waer gut, dass in der Visualisierungsfunktion zu haben
     print('cmd_A', cmd_A, 'cmd_B', cmd_B, 'cmd_floor', cmd_floor, 'current_state', current_state)
-
