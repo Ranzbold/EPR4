@@ -3,6 +3,8 @@ and visualizes their current states.
 """
 
 import random
+import itertools
+import string
 from elevator_gui import update_gui
 
 __author__ = "6611082: Cedric Reuter, 6317302: Fabian Eichner"
@@ -102,7 +104,8 @@ def halt(next_step, cmd_elevator, cmd_floor, current_state, last_state):
     
     return wait_parameter, cmd_elevator, cmd_floor
     
-
+def check_input(input):
+    pass
 
 dictionary = {"K":"1", "E":"2", "1":"3", "2":"4", "3":"5", "4":"6"}   
 current_state = [2, 2] #startpoint (needed for calculate_priority)
@@ -113,17 +116,43 @@ cmd_B = []
 wait_A = 0
 wait_B = 0
 
-
 for turn in range(10): #should be while loop before we hand it in
+    valid_input = False
+    letters_elevator = ('A','B')
+    letters = ('H','R')
+    valid_floor_letters = ('K','E','1','2','3','4')
+    valid_cmds = []
+
+    temp_cmds = set(itertools.product(letters_elevator,valid_floor_letters))
+    for tuple in temp_cmds:
+        valid_cmds.append(tuple[0] + tuple[1])
+    temp_cmds = set(itertools.product(valid_floor_letters,letters))
+    for tuple in temp_cmds:
+        valid_cmds.append(tuple[0] + tuple[1])
+
+    valid_cmds.append('R')
+    valid_cmds.append('H')
+    valid_cmds.append('')
+    valid_cmds.remove('KH')
+    valid_cmds.remove('4R')
+
+    while (not valid_input):
+        usrinput = input('--> ')
+        if (not usrinput.upper() in valid_cmds):
+            print("Falsche Eingabe. Gültige Zeichen zur Eingabe: " + str(valid_cmds))
+        else:
+            valid_input = True
+
+                
+        commands = usrinput.split(' ')
     
-    usrinput = input('--> ')
-    commands = usrinput.split(' ')
     #evaluate correctness of entry data
     
     
     if commands[0] != '':
         for cnt in range(len(commands)):
             #distribute commands among lists and convert them from K-4 to 1-6
+            #Todo Implement handler for input r and h
             if 'r' in commands[cnt][1] or 'h' in commands[cnt][1]:
                 dict_cmd_floor = dictionary[commands[cnt][0]]
                 commands[cnt] = dict_cmd_floor + commands[cnt][1]

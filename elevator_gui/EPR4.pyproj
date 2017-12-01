@@ -5,13 +5,14 @@
     <ProjectGuid>0001dec2-e80a-4090-a6df-4c3c58d867f8</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>elevator_gui.py</StartupFile>
+    <StartupFile>elevator_cmd_computing.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>EPR4</Name>
     <RootNamespace>elevator_gui</RootNamespace>
+    <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
