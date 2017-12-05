@@ -131,8 +131,8 @@ while True: #should be while loop before we hand it in
     valid_cmds.append('R')
     valid_cmds.append('H')
     valid_cmds.append('')
-    valid_cmds.remove('KH')
-    valid_cmds.remove('4R')
+    valid_cmds.remove('KR')
+    valid_cmds.remove('4H')
 
     while (not valid_input):
         usrinput = input('--> ')
