@@ -61,9 +61,8 @@ def calculate_priority(cmd_elevator, cmd_floor, current_state, last_state):
                 else:
                     next_cmd_idx = [idx for idx in range(len(int_elevator)) \
                                     if valid_cmd[idx] == 1][0]
-                    next_cmd = int_elevator[next_cmd_idx]
-                
-                   
+                    next_cmd = int_elevator[next_cmd_idx]              
+               
             else:
                 next_cmd = int_elevator[0]
                 
@@ -75,7 +74,6 @@ def calculate_priority(cmd_elevator, cmd_floor, current_state, last_state):
     elif next_cmd == current_state:
         next_step = current_state
     return next_step, cmd_floor
-
 
 
 def halt(next_step, cmd_elevator, cmd_floor, current_state, last_state):
@@ -107,7 +105,7 @@ def halt(next_step, cmd_elevator, cmd_floor, current_state, last_state):
 def check_input(input):
     pass
 
-dictionary = {"K":"1", "E":"2", "1":"3", "2":"4", "3":"5", "4":"6"}   
+dictionary = {"K": "1", "E": "2", "1": "3", "2": "4", "3": "5", "4": "6"}   
 current_state = [2, 2] #startpoint (needed for calculate_priority)
 last_state = [2, 2] 
 cmd_floor = []
@@ -116,17 +114,17 @@ cmd_B = []
 wait_A = 0
 wait_B = 0
 
-for turn in range(10): #should be while loop before we hand it in
+while True: #should be while loop before we hand it in
     valid_input = False
-    letters_elevator = ('A','B')
-    letters = ('H','R')
-    valid_floor_letters = ('K','E','1','2','3','4')
+    letters_elevator = ('A', 'B')
+    letters = ('H', 'R')
+    valid_floor_letters = ('K', 'E', '1', '2', '3', '4')
     valid_cmds = []
 
-    temp_cmds = set(itertools.product(letters_elevator,valid_floor_letters))
+    temp_cmds = set(itertools.product(letters_elevator, valid_floor_letters))
     for tuple in temp_cmds:
         valid_cmds.append(tuple[0] + tuple[1])
-    temp_cmds = set(itertools.product(valid_floor_letters,letters))
+    temp_cmds = set(itertools.product(valid_floor_letters, letters))
     for tuple in temp_cmds:
         valid_cmds.append(tuple[0] + tuple[1])
 
@@ -138,13 +136,16 @@ for turn in range(10): #should be while loop before we hand it in
 
     while (not valid_input):
         usrinput = input('--> ')
-        if (not usrinput.upper() in valid_cmds):
-            print("Falsche Eingabe. Gültige Zeichen zur Eingabe: " + str(valid_cmds))
-        else:
-            valid_input = True
-
-                
         commands = usrinput.split(' ')
+        for word in commands:
+            word = str(word)
+            if(not word.upper() in valid_cmds): 
+                print("Falsche Eingabe. Gültige Zeichen zur Eingabe: " + str(valid_cmds))
+                valid_input = False
+                break
+            else:
+                valid_input = True
+
     
     #evaluate correctness of entry data
     
@@ -169,9 +170,9 @@ for turn in range(10): #should be while loop before we hand it in
                 if commands[cnt] not in cmd_B:
                     cmd_B.append(commands[cnt])
     
-    
     if wait_A == 0:
-        [next_A, cmd_floor] = calculate_priority(cmd_A, cmd_floor, current_state[0], last_state[0])
+        [next_A, cmd_floor] = calculate_priority(cmd_A, cmd_floor,
+                                                current_state[0], last_state[0])
     else:
         next_A = current_state[0]
         
@@ -179,7 +180,8 @@ for turn in range(10): #should be while loop before we hand it in
         
         
     if wait_B == 0:
-        [next_B, cmd_floor] = calculate_priority(cmd_B, cmd_floor, current_state[1], last_state[1])
+        [next_B, cmd_floor] = calculate_priority(cmd_B, cmd_floor,
+                                                current_state[1], last_state[1])
     else:
         next_B = current_state[1]
         
